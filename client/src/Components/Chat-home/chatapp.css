@@ -1,0 +1,66 @@
+.chatapp_main{
+    width: 100%;
+    height: 100vh;
+    background-color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.chatapp_heading{
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.chatapp_heading p{
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 52px;
+    text-transform: capitalize;
+    color: rgb(40, 113, 202);
+    margin-bottom: 0px;
+}
+.chatapp_img{
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.image_signup{
+    object-fit: contain;
+    max-width: 800px;
+    width: 100%;
+    height: 300px;
+    margin: 10px auto;
+}
+.chatapp_btn{
+    width: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn_home{
+max-width: 300px;
+width: 100%;
+height: 45px;
+margin: 10px 10px;
+background-color: rgb(40, 113, 202);
+font-size: 20px;
+color: white;
+border: none;
+cursor: pointer;
+}
+.chatapp_alrready{
+    color: rgb(40, 113, 202);
+    font-size: 20px;
+    text-transform: uppercase;
+}
+@media only screen and (max-width: 600px){
+    .chatapp_main{
+      
+     
+        justify-content: flex-start;
+        align-items: center;
+    }
+}

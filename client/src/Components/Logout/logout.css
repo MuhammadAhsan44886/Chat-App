@@ -1,0 +1,113 @@
+.logout_main{
+    width: 100%;
+    height: 100vh;
+
+}
+.logout_head{
+    display: flex;
+    width: 100%;
+background-color: rgb(40, 113, 202);
+    justify-content: space-between;
+    align-items: center;
+
+}
+.back_icon{
+    font-size: 30px;
+    margin-left: 20px;
+color: white;
+   
+}
+.edit_icon{
+    font-size: 30px;
+    margin-right: 20px;
+    color: white;
+}
+.logout_heading{
+    font-size: 30px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: white;
+}
+.profile_data{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 10pxs;
+}
+.profilediv_img{
+    max-width: 300px;
+    width: 100%;
+    height: 300px
+    ;
+    object-fit: contain;
+    border-radius: 140px;
+    
+
+}
+.profilediv_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+}
+.profile_input{
+    
+    display: flex;
+    justify-content: center;
+   align-items: center;
+    flex-direction: column;
+}
+.proilediv_label{
+font-size: 15px;
+margin-bottom: 5px;
+padding: 5px 10px;
+}
+.proilediv_label1{
+    font-size: 15px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    margin-top: 20px;
+    }
+    
+
+.proilediv_input{
+    max-width: 300px;
+    width: 100%;
+    padding: 10px 5px;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+.logoutbutton_div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.loout_btn{
+    font-size: 20px;
+    color: rgb(40, 113, 202);
+    border: none;
+    outline: none;
+    background-color: transparent !important
+    ;
+}
+
+@media only screen and (max-width: 440px){
+    .back_icon {
+        font-size: 20px;
+        margin-left: 10px;
+        
+    }
+    .edit_icon {
+        font-size: 20px;
+        margin-right: 10px;
+        
+    }
+    .logout_heading {
+        font-size: 25px;
+      
+    }
+}

@@ -1,0 +1,59 @@
+const express = require("express");
+const router = express.Router();
+const chat = require("../Model/Chat");
+
+router.post("/postchat", async (req, res) => {
+  const { from, to, message } = req.body;
+  console.log("from", from )
+  console.log("from", to )
+  try {
+    const messages = await chat.find();
+    for (let i = 0; i <= messages.length - 1; i++) {
+      if (
+        (await messages[i].Users.indexOf(to)) !== -1 &&
+        (await messages[i].Users.indexOf(from)) !== -1
+      ) {
+        if (messages[i]) {
+          await messages[i].messagee.push({ message, from });
+          await messages[i].save();
+          return res.status(200).send({ message: "Chat Saved Successfully" });
+        }
+      }
+    }
+    const newChat = new chat({
+      Users: [from, to],
+      messagee: { message, from },
+    });
+    await newChat.save();
+    return res.status(200).send({ message: "New Chat Saved Successfully" });
+  } catch (error) {
+    res.status(500).send({ message: "Something went wrong", error });
+  }
+});
+
+router.get("/getChat/:from/:to", async (req, res) => {
+  const { from, to } = req.params;
+  try {
+    const messages = await chat.find();
+    for (let i = 0; i <= messages.length - 1; i++) {
+      if (
+        (await messages[i].Users.indexOf(to)) !== -1 &&
+        (await messages[i].Users.indexOf(from)) !== -1
+      ) {
+        if (messages[i]) {
+          return res
+            .status(200)
+            .send({
+              message: messages[i].messagee,
+              createdAt:  messages[i].createdAt,
+            });
+        }
+      }
+    }
+    return res.status(200).send([{ message: "Start New Chat" }]);
+  } catch (error) {
+    res.status(500).send({ message: "Something went wrong", error });
+  }
+});
+
+module.exports = router;
