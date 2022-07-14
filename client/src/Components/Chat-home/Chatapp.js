@@ -1,16 +1,9 @@
 import React, {useState, useEffect} from "react";
 import '../Chat-home/chatapp.css'
 import signup from "../images/signup.gif";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Chatapp = () => {
-  const navigate = useNavigate()
-  useEffect(() => {
-    const gettoken = localStorage.getItem("token");
-     if(!gettoken){
-      navigate('/login')
-     }
-  }, []);
   return (
     <>
       <div className="chatapp_main">

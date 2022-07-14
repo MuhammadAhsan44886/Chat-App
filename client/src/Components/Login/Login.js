@@ -28,18 +28,15 @@ const Login = () => {
     if (data.email === "" || data.password === "") {
       Swal.fire("Field cannot be empty");
     } else {
-      try {
-        const result = await axios.post(
-          "http://localhost:4000/api/auth/login",
-          {
-            password: data.password,
-            email: data.email,
-          }
-        );
-        navigate("/");
-        Swal.fire("Login Successfully");
+      const result = await axios.post("http://localhost:4000/api/auth/login", {
+        password: data.password,
+        email: data.email,
+      });
+      if (result.data.status === true) {
         localStorage.setItem("token", result.data.token);
-      } catch (error) {
+        Swal.fire("Login Successfully");
+        navigate("/");
+      } else {
         Swal.fire("Auth Failed");
       }
     }

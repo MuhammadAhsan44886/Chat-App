@@ -10,7 +10,7 @@ router.post("/login", (req, res, next) => {
     .exec()
     .then((user) => {
       if (!user) {
-        res.status(404).json({
+        res.status(200).json({
           messege: "User not Found Email does not exist",
           status: false,
         });
@@ -18,7 +18,7 @@ router.post("/login", (req, res, next) => {
 
       bcrypt.compare(req.body.password, user[0].password, (err, result) => {
         if (err) {
-          return res.status(401).json({
+          return res.status(200).json({
             messege: "failed for login",
             status: false,
           });
@@ -31,14 +31,14 @@ router.post("/login", (req, res, next) => {
             token: token,
           });
         }
-        res.status(401).json({
+        res.status(200).json({
           messege: "auth faild",
           status: false,
         });
       });
     })
     .catch((error) => {
-      res.status(500).json({
+      res.status(200).json({
         messege: "failed",
         status: false,
       });
