@@ -3,66 +3,71 @@ import "../Logout/logout.css";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { MdModeEditOutline } from "react-icons/md";
 import profile from "../images/signup.gif";
+import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+const config = require("../../config.json");
 
 const Logout = () => {
-  const [logoutstate, setLogoutState] = useState({
-    name: "",
-    email: "",
-  });
-const handlechnage =(e)=>{
-setLogoutState({
-  ...logoutstate,
-[e.target.name]:e.target.value,
-});
-}
-console.log("logout", logoutstate)
+  const navigate = useNavigate();
+  const [user, setuser] = useState("");
+  const [userimage, setuserimage] = useState("");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
+  React.useEffect(() => {
+    const getToken = localStorage.getItem("token");
+    if (getToken === null) {
+      navigate("/login");
+    } else {
+      const userinfo = jwt_decode(localStorage.getItem("token")).user_info[0];
+      setuser(userinfo);
+      const id = userinfo._id;
+      axios
+        .get(`${config.api_url}chat/getFromImage/${id}`)
+        .then((response) => setuserimage(response?.data?.image))
+        .catch((error) => console.log(error));
+    }
+  }, []);
+
   return (
     <>
       <div className="logout_main">
         <div className="logout_head">
           <div className="back_icon">
-            <IoArrowBackOutline />
+            <IoArrowBackOutline onClick={() => navigate('/chat-conversation')}/>
           </div>
           <div>
             <p className="logout_heading"> profile</p>
           </div>
           <div className="edit_icon">
-            <MdModeEditOutline />
+            <MdModeEditOutline  onClick={() => navigate('/edit-profile')}/>
           </div>
         </div>
         <div className="profile_data">
           <div className="profilediv_img">
             {" "}
-            <img src={profile} alt="" />
+            <img src={`${config?.image_url}${userimage}`} alt=""  />
           </div>
         </div>
         <div className="profile_input">
           <label for="fname" className="proilediv_label">
             Name:
           </label>
-          <input
-            type="text"
-            id="fname"
-            name="name"
-            value={logoutstate.name}
-            onChange={(e)=>handlechnage(e)}
-            placeholder="QHAMANI Ketani"
-            className="proilediv_input"
-          />
+          <p>{user.fullName}</p>
+
           <label for="lname" className="proilediv_label1">
             Email:
           </label>
-          <input
-            type="email"
-            id="lname"
-            name="email"
-            onChange={(e)=>handlechnage(e)}
-            placeholder="Ketaniqhamani@gmail.com"
-            className="proilediv_input"
-          />
+          <p>{user.email}</p>
         </div>
         <div className="logoutbutton_div">
-          <button className="loout_btn">LOGOUT</button>
+          <button className="loout_btn" onClick={() => handleLogout()}>
+            LOGOUT
+          </button>
         </div>
       </div>
     </>

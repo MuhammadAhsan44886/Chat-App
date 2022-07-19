@@ -5,33 +5,66 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const config = require("../../config.json");
 
 const Editprofile = () => {
-  const [userdata, setUserData] = useState();
-  const [image, setImage] = useState("");
-  const [imageName, setImageName] = useState("");
   const navigate = useNavigate();
-  const handleChange = (e) => {
+  const [userdata, setUserData] = useState("");
+  const [getid, setgetid] = useState("");
+  const [file, setFile] = useState("");
+  const [image, setImage] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [fullName, setfullName] = useState("");
+
+  const handleImage = (e) => {
     if (e.target.files.length) {
+      setFile(e.target.files[0]);
       setImage(URL.createObjectURL(e.target.files[0]));
-      setImageName(e.target.files[0].name);
     }
   };
 
-  const id = jwt_decode(localStorage.getItem("token")).user_info[0]._id;
-  useEffect(() => {
-    const response = async () => {
-      const data = await axios.get(`${config.api_url}auth/getUser/${id}`);
-      setUserData(data.data);
-    };
-    response();
-  }, []);
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    if (!file && !userdata) {
+      Swal.fire("Select Image First");
+    } else if (email === "" || password === "" || fullName === "") {
+      Swal.fire("Fields Cannt be empty");
+    } else {
+      const formdata = new FormData();
+      formdata.append("email", email);
+      formdata.append("password", password);
+      formdata.append("fullName", fullName);
+      formdata.append("profile_image", file ? file : userdata);
+      const response = await axios.patch(
+        `${config.api_url}upload/editprofile/${getid}`,
+        formdata
+      );
+      if (response.data.status === true) {
+        localStorage.removeItem("token");
+        localStorage.setItem("token", response.data.token);
+        Swal.fire("User Update Successfully");
+        navigate('/chat-conversation')
+      }
+    }
+  };
 
-  useEffect(() => {
-    const gettoken = localStorage.getItem("token");
-    if (!gettoken) {
+  React.useEffect(() => {
+    const getToken = localStorage.getItem("token");
+    if (getToken === null) {
       navigate("/login");
+    } else {
+      const id = jwt_decode(localStorage.getItem("token")).user_info[0]._id;
+      axios
+        .get(`${config.api_url}auth/getUser/${id}`)
+        .then((data) => {
+          setgetid(data.data._id);
+          setemail(data.data.email);
+          setfullName(data.data.fullName);
+          setUserData(data.data.profile_image);
+        })
+        .catch((error) => console.log(error));
     }
   }, []);
 
@@ -40,7 +73,7 @@ const Editprofile = () => {
       <div className="edit_profile">
         <div className="edit_profile_head">
           <div className="edit_profile_arrow">
-            <IoArrowBackOutline className="EDIT_PROFILE_ICON" />
+            <IoArrowBackOutline className="EDIT_PROFILE_ICON" onClick={() => navigate('/chat-conversation')}/>
           </div>
           <div className="edit_profile_heading">
             <p>Edit profile</p>
@@ -49,24 +82,28 @@ const Editprofile = () => {
         <div className="editprofile_input">
           <div className="input_editable">
             <label for="fname" className="editable_lable">
-              First name:
+              Email
             </label>
             <input
               type="text"
               className="editable_input"
-              id="fname"
-              name="fname"
-              placeholder="KeTANIqhamani@gmail.com"
+              id="Email"
+              name="Email"
+              placeholder="Enter Email"
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
             />
             <label for="lname" className="editable_lable">
-              Last name:
+              Password
             </label>
             <input
-              type="text"
+              type="password"
               className="editable_input"
-              id="lname"
-              name="lname"
-              placeholder="password"
+              id="Password"
+              name="Password"
+              placeholder="Enter Password"
+              value={password}
+              onChange={(e) => setpassword(e.target.value)}
             />
             <label for="lname" className="editable_lable">
               Full name:
@@ -74,13 +111,15 @@ const Editprofile = () => {
             <input
               type="text"
               className="editable_input"
-              id="lname"
-              name="lname"
-              placeholder="Qhamani Ketani"
+              id="FullName"
+              name="FullName"
+              placeholder="Enter FullName"
+              value={fullName}
+              onChange={(e) => setfullName(e.target.value)}
             />
           </div>
           <div className="profile_picture_chnage">
-            <div className="changeimage_headig">profile picture</div>
+            <div className="changeimage_headig">Profile Picture</div>
             <div className="profilehnage_div">
               <div className="editeable_picture_upload">
                 <label
@@ -93,7 +132,7 @@ const Editprofile = () => {
                     id="contained-button-file"
                     type="file"
                     style={{ display: "none" }}
-                    onChange={handleChange}
+                    onChange={handleImage}
                   />
                   <Button
                     variant="contained"
@@ -101,14 +140,14 @@ const Editprofile = () => {
                     component="span"
                     className="chnageprofile_image_button selectanimagebutton"
                   >
-                    <span className="change">change photo</span>
+                    <span className="change">Change Photo</span>
                   </Button>
                 </label>
                 {image ? (
                   <img src={image} alt="" className="chnage_profile_imge" />
                 ) : (
                   <img
-                    src={`${config.image_url}${userdata?.profile_image}`}
+                    src={`${config.image_url}${userdata}`}
                     alt=""
                     className="chnage_profile_imge"
                   />
@@ -118,7 +157,9 @@ const Editprofile = () => {
           </div>
         </div>
         <div className="update_profilediv">
-          <button className="update_btn">update profile</button>
+          <button className="update_btn" onClick={handleUpdate}>
+            Update Profile
+          </button>
         </div>
       </div>
     </>

@@ -1,40 +1,59 @@
 import React, { useState, useEffect } from "react";
 import "../welcome/welccome.css";
-import { Button } from "@material-ui/core";
+import { Button, responsiveFontSizes } from "@material-ui/core";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
+const config = require("../../config.json");
 const Welcome = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [image, setImage] = useState("");
-  const [imageName, setImageName] = useState("");
   const [file, setFile] = useState("");
 
   const handleChange = (e) => {
     if (e.target.files.length) {
       setFile(e.target.files[0]);
       setImage(URL.createObjectURL(e.target.files[0]));
-      setImageName(e.target.files[0].name);
     }
   };
 
   const imageUpload = async (e) => {
     e.preventDefault();
-    const id = jwt_decode(localStorage.getItem('token')).user_info[0]._id;
-    const formdata = new FormData();
-    formdata.append("profile_image", file);
-    const response = await axios.patch(`http://localhost:4000/api/upload/image/${id}`, formdata)
-    localStorage.setItem("currentUserImage",response?.data?.getUser?.profile_image);
+    if (!file) {
+      Swal.fire("Select Image First");
+    } else {
+      const id = jwt_decode(localStorage.getItem("token")).user_info[0]._id;
+      const formdata = new FormData();
+      formdata.append("profile_image", file);
+      const response = await axios.patch(
+        `${config.api_url}upload/image/${id}`,
+        formdata
+      );
+      if (response?.data?.status === true) {
+        Swal.fire("Image Uploaded Successfully");
+        navigate("/chat-conversation");
+      }
+    }
   };
 
-  
-  useEffect(() => {
-    const gettoken = localStorage.getItem("token");
-     if(!gettoken){
-      navigate('/login')
-     }
+  React.useEffect(() => {
+    const getToken = localStorage.getItem("token");
+    if (getToken === null) {
+      navigate("/login");
+    } else {
+      const from = jwt_decode(localStorage.getItem("token")).user_info[0]._id;
+      axios
+        .get(`${config.api_url}chat/getFromImage/${from}`)
+        .then((response) => {
+          if (response.data.image !== "") {
+            navigate("/chat-conversation");
+          }
+        })
+        .catch((error) => console.log(error));
+    }
   }, []);
+
   return (
     <>
       <div className="welocme_main">

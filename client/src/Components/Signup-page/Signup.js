@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "../Signup-page/signup.css";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+const config = require("../../config.json");
 const Signup = () => {
   const navigate = useNavigate();
   const [signState, setSignState] = useState({
@@ -27,7 +28,7 @@ const Signup = () => {
       if (item.email === "" || item.password === "" || item.fullName === "") {
         Swal.fire("Fill Every Field");
       } else {
-        let result = await fetch("http://localhost:4000/api/auth/register", {
+        let result = await fetch(`${config.api_url}auth/register`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -36,13 +37,23 @@ const Signup = () => {
           body: JSON.stringify(item),
         });
         result = await result.json();
+        if (result.messege === "User Created") {
+          Swal.fire(result.messege);
+          navigate("/paypal");
+        }
         Swal.fire(result.messege);
-        navigate('/paypal')
       }
     } catch (error) {
-      alert("error");
+      Swal.fire("error");
     }
   };
+
+  React.useEffect(() => {
+    const getToken = localStorage.getItem("token");
+    if (getToken !== null) {
+      navigate("/welcome");
+    }
+  }, []);
 
   return (
     <>

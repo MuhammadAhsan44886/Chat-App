@@ -1,24 +1,88 @@
 .paypal_main {
-    width: 100%;
-    height: 100vh;
-    background-color: rgb(40, 113, 202);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
-  }
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(40, 113, 202);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.freetrial-button {
+  border: none;
+  background-color: aliceblue;
+  color: black;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mainbutton-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.subbutton-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.buttonone {
+  min-width:  435px !important;
+  font-size:  20px !important;
+  font-weight:  600 !important;
+  border-radius:  5px !important;
+  padding: 5px  10px !important;
+}
+.buttontwo {
+  margin:  20px !important;
+  min-width:  350px !important;
+  font-size:  20px !important;
+  font-weight:  600 !important;
+  border-radius:  5px !important;
+  padding: 5px  10px !important;
+}
+.buttonthree {
+  min-width:  435px !important;
+  font-size:  20px !important;
+  font-weight:  600 !important;
+  border-radius:  5px !important;
+  padding: 5px  10px !important;
+}
 
 
-  .freetrial-button{
-    border: none;
-    background-color: aliceblue;
-    color: black;
-    font-weight: 600;
-    border-radius: 5px;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.paymentform-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.paymentform-container input{
+  margin: 5px 0px;
+  min-width: 300px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: 1px solid rgb(147, 147, 147);
+}
+
+@media screen and (max-width: 958px) {
+  .buttonone {
+    min-width:  340px !important;
+    font-size:  16px !important;
   }
+  .buttontwo {
+    min-width:  340px !important;
+    font-size:  16px !important;
+  }
+  .buttonthree {
+    min-width:  340px !important;
+    font-size:  16px !important;
+  }
+}

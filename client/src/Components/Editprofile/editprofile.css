@@ -1,152 +1,143 @@
-.edit_profile{
-    width: 100%;
-    height: 100vh;
+.edit_profile {
+  width: 100%;
+  height: 100vh;
 }
-.edit_profile_head{
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-color: rgb(40, 113, 202)
+.edit_profile_head {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: rgb(40, 113, 202);
 }
-.edit_profile_arrow{
-position: absolute;
-left: 30PX;
+.edit_profile_arrow {
+  position: absolute;
+  left: 30px;
+  cursor: pointer;
 }
-.edit_profile_heading p{
-   font-size: 25PX;
-   font-weight: bold;
-   text-transform: capitalize;
-   color: white;
-    }
-    .EDIT_PROFILE_ICON{
-        fill: white !important;
-        color: white;
-        font-size: 30PX;
-    }
-    .editprofile_input{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    .input_editable{
-        display: flex;
-        flex-direction: column;
-        max-width: 500px;
-        width: 100%;
-        padding: 10px 10px;
-    }
-    .editable_lable{
-width: 100%;
-color: black;
-font-size: 18px;
-margin-bottom: 5px;
-    }
-    .editable_input{
-        width: 100%;
-        outline: none;
-        font-size: 14px;
-        padding:7px 0px;
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-  .input_editable>  ::placeholder{
-        font-size: 16px;
-    }
-    .profile_picture_chnage{
-        max-width: 500px;
-        width: 100%;
-    }
-    .profilechnage_main_width{
-        width: 100%;
-        text-align: center;
-    }
-    .editeable_picture_upload{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin-top: 25px;
-    }
-    .change_profile_imagebtn{
+.edit_profile_heading p {
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: white;
+  margin-top: 11px;
+}
+.EDIT_PROFILE_ICON {
+  fill: white !important;
+  color: white;
+  font-size: 30px;
+}
+.editprofile_input {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.input_editable {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  width: 100%;
+  padding: 10px 10px;
+}
+.editable_lable {
+  width: 100%;
+  color: black;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.editable_input {
+  width: 100%;
+  outline: none;
+  font-size: 14px;
+  padding: 7px 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.input_editable > ::placeholder {
+  font-size: 16px;
+}
+.profile_picture_chnage {
+  max-width: 500px;
+  width: 100%;
+}
+.profilechnage_main_width {
+  width: 100%;
+  text-align: center;
+}
+.editeable_picture_upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 25px;
+}
+.change_profile_imagebtn {
+  background-color: white !important;
+  position: relative;
+}
+.chnageprofile_image_button {
+  max-width: 450px !important;
+  width: 100%;
+}
+.chnage_profile_imge {
+  position: absolute;
+  margin: -26px 0px;
+  max-width: 120px;
+  width: 100%;
+  height: 80px;
+  border-radius: 30px;
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.change {
+  font-size: 13px !important;
+  color: rgb(40, 113, 202) !important;
+  margin-top: 120px !important;
+}
+.editeable_picture_upload > .MuiButton-containedPrimary {
+  color: black !important;
 
-        background-color: white !important;
-        position: relative;
-        }
-        .chnageprofile_image_button {
-            max-width: 450px !important;
-            width: 100%;
-        }
-        .chnage_profile_imge{
-            position: absolute;
-            margin: -26px 0px;
-            max-width: 120px;
-            width: 100%;
-            height: 80px;
-            border-radius: 30px;
-            object-fit: contain;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-      
-        }
-        .change {
-            font-size: 13px !important;
-            color: rgb(40, 113, 202) !important;
-            margin-top: 120px !important;
-        }
-       .editeable_picture_upload> .MuiButton-containedPrimary {
-            color: black !important;
-         
-            background-color: transparent;
-            height: 150px;
-            border: 1px solid black !important;
-            background-color: blue !important;
-        }
-        .update_profilediv{
-            
-            width: 100%;
-            text-align: center;
-        }
-        .update_btn{
+  background-color: transparent;
+  height: 150px;
+  border: 1px solid black !important;
+  background-color: blue !important;
+}
+.update_profilediv {
+  width: 100%;
+  text-align: center;
+}
+.update_btn {
+  background-color: rgb(40, 113, 202) !important;
+  border: none;
+  outline: none;
+  max-width: 500px;
+  color: white;
+  font-size: 20px;
+  padding: 8px 0px;
+  width: 100%;
+  border-radius: 3px;
+}
 
-            background-color:  rgb(40, 113, 202) !important;
-            border: none;
-            outline: none;
-            max-width: 500px;
-            color: white;
-            font-size: 20px;
-            padding: 8px 0px;
-            width: 100%;
-            border-radius: 3px;
-        }
-
-        @media only screen and (max-width: 600px) {
-            .input_editable {
-              
-                width: 90%;
-               
-            }
-            .profile_picture_chnage {
-            
-                width: 90%;
-            }
-            .update_btn {
-           
-                width: 90%;
-               
-            }
-            .edit_profile_heading p {
-                font-size: 20PX;
-               
-            }
-            .EDIT_PROFILE_ICON {
-               
-                font-size: 20PX;
-            }
-          }
+@media only screen and (max-width: 600px) {
+  .input_editable {
+    width: 90%;
+  }
+  .profile_picture_chnage {
+    width: 90%;
+  }
+  .update_btn {
+    width: 90%;
+  }
+  .edit_profile_heading p {
+    font-size: 20px;
+  }
+  .EDIT_PROFILE_ICON {
+    font-size: 20px;
+  }
+}

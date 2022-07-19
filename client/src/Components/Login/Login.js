@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+const config = require('../../config.json')
 const Login = () => {
+
   const [loginState, setLoginState] = useState({
     email: "",
     password: "",
@@ -28,19 +30,30 @@ const Login = () => {
     if (data.email === "" || data.password === "") {
       Swal.fire("Field cannot be empty");
     } else {
-      const result = await axios.post("http://localhost:4000/api/auth/login", {
+      const result = await axios.post(`${config.api_url}auth/login`, {
         password: data.password,
         email: data.email,
       });
+      
       if (result.data.status === true) {
         localStorage.setItem("token", result.data.token);
         Swal.fire("Login Successfully");
-        navigate("/");
+        navigate("/welcome");
+      } else if (result.data.message === "You Cannt Login.Pay First") {
+        Swal.fire("Your free trial is over now.Pay to use the app");
+        navigate("/paypal");
       } else {
         Swal.fire("Auth Failed");
       }
     }
   };
+
+  React.useEffect(() => {
+    const getToken = localStorage.getItem("token");
+    if(getToken !== null){
+      navigate('/welcome')
+    }
+  }, [])
 
   return (
     <>

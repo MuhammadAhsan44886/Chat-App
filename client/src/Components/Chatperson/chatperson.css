@@ -1,175 +1,211 @@
-.chatperson_main{
+.logoutheading{
+ position: absolute;
+ right: 0;
+ top: 10px;
+ right: 42px;
+ cursor: pointer;
+
+}
+
+.logoutheading p{
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: white;
+  /* margin-top: 10px; */
+}
+
+
+
+.chatperson_main {
+  width: 100%;
+  height: auto;
+}
+.conversation_head {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: rgb(40, 113, 202);
+}
+.conversation_arrow {
+  position: absolute;
+  left: 30px;
+  cursor: pointer;
+}
+.conversation_heading p {
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: white;
+  margin-top: 10px;
+}
+.conversation_ICON {
+  fill: white !important;
+  color: white;
+  font-size: 30px;
+}
+.conversation_search {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0px;
+}
+.saerch_bar {
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  border-radius: 60px;
+  border: 1px solid black;
+  justify-content: flex-start;
+  align-items: center;
+}
+.search_input {
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}
+.saerch_bar_inputdiv {
+  max-width: 355px;
+  width: 100%;
+  margin-left: 8px;
+  padding: 4px 0px;
+}
+.sarch_icon {
+  font-size: 20px;
+  margin-top: -3px;
+  margin-left: 10px;
+}
+.person_data_div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: auto;
+  max-width: 1500px;
+  width: 100%;
+  margin-top: 20px;
+  margin: 0px auto;
+}
+.conversation_persondiv {
+  cursor: pointer;
+  display: flex;
+  max-width: 450px;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid black;
+  margin-bottom: 50px;
+  padding: 15px 10px;
+  margin: 20px 10px;
+}
+.person_img_div {
+  width: 80px;
+  height: 80px;
+  border-radius: 120px;
+}
+.person_name_div {
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 20px;
+  text-transform: capitalize
+}
+.person_img_main {
+  width: 100%;
+  height: 100%;
+  border-radius: 120px;
+}
+.total_person {
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+}
+.total_person p {
+  font-size: 20px;
+  text-transform: capitalize;
+  color: rgb(40, 113, 202);
+}
+
+@media only screen and (max-width: 1040px) {
+  .conversation_persondiv {
+    max-width: 300px;
     width: 100%;
-    height: auto;
+  }
 }
-.conversation_head{
+@media only screen and (max-width: 776px) {
+  .conversation_persondiv {
+    max-width: 250px;
     width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-color: rgb(40, 113, 202)
+  }
 }
-.conversation_arrow{
-position: absolute;
-left: 30PX;
+@media only screen and (max-width: 600px) {
+  .conversation_arrow{
+    top: 16px;
+  }
+  .logoutheading{
+    right: 0;
+    top: 16px;
+    right: 20px;
+   
+   }
+  
+   .logoutheading p{
+     font-size: 16px;
+   }
+  .conversation_persondiv {
+    max-width: 100%;
+    width: 100%;
+    margin: 10px 10px;
+  }
+  .person_img_div {
+    width: 60px;
+    height: 60px;
+    border-radius: 120px;
+  }
+  .person_name_div {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 20px;
+  }
+  .saerch_bar {
+    width: 90%;
+  }
+  .conversation_arrow {
+    position: absolute;
+    left: 20px;
+  }
+  .search_input {
+    width: 90%;
+  }
 }
-.conversation_heading p{
-   font-size: 25PX;
-   font-weight: bold;
-   text-transform: capitalize;
-   color: white;
-    }
-    .conversation_ICON{
-        fill: white !important;
-        color: white;
-        font-size: 30PX;
-    }
-    .conversation_search{
-        
-        width: 100%;
-        justify-content: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 15px 0px;
-    }
-    .saerch_bar{
-max-width: 400px;
-width: 100%;
-display: flex;
-border-radius: 60px;
-border: 1px solid black;
-justify-content: flex-start;
-align-items: center;
-    }
-    .search_input{
-width: 100%;
-font-size: 16px;
-border: none;
-outline: none;
-    }
-    .saerch_bar_inputdiv{
-        max-width: 355px;
-        width: 100%;
-        margin-left: 8px;
-    }
-    .sarch_icon{
-        font-size: 20px;
-        margin-top: 8px;
-        margin-left: 5px;
-    }
-    .person_data_div{
-        display: flex;
-    justify-content: space-between;
-        flex-wrap: wrap;
-        height: auto;
-        max-width: 1500px;
-        width: 100%;
-        margin-top: 20px;
-        margin: 0px auto;
-    }
-    .conversation_persondiv{
-        cursor: pointer;
-        display: flex;
-       max-width: 450px;
-       width: 100%;
-        align-items: center;
-        border-bottom: 1px solid black ;
-        margin-bottom: 50px;
-        padding: 15px 10px;
-        margin: 20px 10px;
-    }
-    .person_img_div{
-width: 80px;
-height: 80px;
-border-radius: 120px;
-    }
-    .person_name_div{
-font-size: 18px;
-font-weight: bold;
-margin-left: 20px;
-    }
-    .person_img_main{
-width: 100%;
-height: 100%;
-border-radius: 120px;
-
-    }
-    .total_person{
-        width: 90%;
-        display: flex;
-        justify-content: flex-end;
-    }
-    .total_person p{
-      font-size: 20px;
-      text-transform: capitalize;
-      color:rgb(40, 113, 202) ;
-
-    }
-
-    @media only screen and (max-width: 1040px){
-        .conversation_persondiv {
-         
-            max-width: 300px;
-            width: 100%;
-           
-        }
-    }
-    @media only screen and (max-width: 776px){
-        .conversation_persondiv {
-         
-            max-width: 250px;
-            width: 100%;
-           
-        }
-       
-    }
-    @media only screen and (max-width: 600px){
-        .conversation_persondiv {
-         
-            max-width: 100%;
-            width: 100%;
-            margin: 10px 10px;
-           
-        }
-        .person_img_div {
-            width: 60px;
-            height: 60px;
-            border-radius: 120px;
-        }
-        .person_name_div {
-            font-size: 16px;
-            font-weight: bold;
-            margin-left: 20px;
-        }
-        .saerch_bar {
-         
-            width: 90%;
-          
-        }
-        .conversation_arrow {
-            position: absolute;
-            left: 20PX;
-        }
-        .search_input {
-            width: 90%;
-         
-        }
-    }
-    @media only screen and (max-width: 440px){
-        .conversation_heading p {
-            font-size: 20PX;
-           
-        }
-        .conversation_ICON {
-           
-            font-size: 22PX;
-            margin-top: 7px;
-        }
-        .conversation_arrow {
-            position: absolute;
-            left: 10PX;
-        }
-    }
+@media only screen and (max-width: 440px) {
+  .conversation_arrow{
+    top: 8px;
+  }
+  .logoutheading{
+    right: 0;
+    top: 12px;
+    right: 20px;
+   
+   }
+  
+   .logoutheading p{
+     font-size: 16px;
+   }
+  .conversation_heading p {
+    font-size: 20px;
+  }
+ 
+   
+  .conversation_ICON {
+    font-size: 22px;
+    margin-top: 7px;
+  }
+  .conversation_arrow {
+    position: absolute;
+    left: 10px;
+  }
+}

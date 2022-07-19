@@ -13,6 +13,12 @@ const chatSchema = new mongoose.Schema(
         type: Object,
       },
     ],
+    toUser: {
+      type: Object,
+    },
+    fromUser: {
+      type: Object,
+    },
   },
   {
     timestamps: true,

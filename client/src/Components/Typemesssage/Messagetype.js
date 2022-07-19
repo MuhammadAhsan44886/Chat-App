@@ -14,33 +14,55 @@ const Messagetype = () => {
   const [chatArray, setchatArray] = useState([]);
   const [message, setMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [fromImage, setfromImage] = useState("");
   const { chatid, chatname, chatpic } = useParams();
   const scrollRef = useRef();
 
   const from = jwt_decode(localStorage.getItem("token")).user_info[0]._id;
-  const fromImage = localStorage.getItem("currentUserImage");
+  const fromName = jwt_decode(localStorage.getItem("token")).user_info[0].fullName;
   const to = chatid;
 
   const handleMessage = async (e) => {
     e.preventDefault();
-    await axios
+    if(message.length !== 0){
+
+      await axios
       .post(`${config.api_url}chat/postchat`, {
         to: to,
         from: from,
         message: message,
+        toUserInfo: {
+          toid : to,
+          chatpic:chatpic,
+          chatname:chatname
+        },
+        fromUserInfo: {
+          fromid : from,
+          frompic:fromImage,
+          fromname:fromName
+        }
       })
       .then((data) => setMessage(""))
       .catch((error) => console.log(error));
-    socket.current.emit("send-msg", {
-      to: to,
-      from: from,
-      message: message,
-    });
-    const messagesArray =
+      socket.current.emit("send-msg", {
+        to: to,
+        from: from,
+        message: message,
+      });
+      const messagesArray =
       chatArray === undefined ? [chatArray] : [...chatArray];
-    messagesArray.push({ message: message, from: from });
-    setchatArray(messagesArray);
-  };
+      messagesArray.push({ message: message, from: from });
+      setchatArray(messagesArray);
+    };
+  }
+
+  useEffect(() => {
+    const response = async () => {
+      const getFromImage =  await axios.get(`${config.api_url}chat/getFromImage/${from}`)
+       setfromImage(getFromImage?.data?.image); 
+    }
+    response()
+  },[])
 
   useEffect(() => {
     const response = async () => {
@@ -150,7 +172,7 @@ const Messagetype = () => {
                 ></textarea>
               </div>
               <div className="send_icon_div">
-                <AiOutlineSend className="send_icon" onClick={handleMessage} />
+                <AiOutlineSend className="send_icon" onClick={handleMessage} style={{cursor: message.length === 0 && "no-drop"}}/>
               </div>
             </div>
           </div>

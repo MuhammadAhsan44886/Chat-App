@@ -30,6 +30,7 @@
   font-weight: 400;
   font-size: large;
   text-align: end;
+  margin-top: 10px;
 }
 
 .chat_text_recieve {
@@ -37,6 +38,7 @@
   font-weight: 400;
   font-size: large;
   text-align: start;
+  margin-top: 10px;
 }
 
 ::-webkit-scrollbar {
@@ -57,6 +59,7 @@
 .before_messsage {
   width: 100%;
   text-align: center;
+  text-transform: capitalize;
 }
 
 .typeinput_div {

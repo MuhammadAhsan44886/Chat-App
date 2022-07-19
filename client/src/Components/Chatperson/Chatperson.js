@@ -27,15 +27,28 @@ const Chatperson = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  React.useEffect(() => {
+    const getToken = localStorage.getItem("token");
+    if (getToken === null) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <div className="chatperson_main">
       <div className="conversation_head">
         <div className="conversation_arrow">
-          <IoArrowBackOutline className="conversation_ICON" />
+          <IoArrowBackOutline
+            className="conversation_ICON"
+            onClick={() => navigate("/message")}
+          />
         </div>
         <div className="conversation_heading">
           <p>Start Conversation</p>
         </div>
+      </div>
+      <div className="logoutheading" onClick={() => navigate("/logout")}>
+        <p>Logout</p>
       </div>
       <div className="conversation_search">
         <div className="saerch_bar">

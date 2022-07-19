@@ -48,7 +48,6 @@ mongoose
     console.log("Connected To Database");
   })
   .catch((error) => {
-    console.log(error);
     console.log("Not connected");
   });
 
