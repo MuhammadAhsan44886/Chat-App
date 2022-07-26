@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../welcome/welccome.css";
-import { Button, responsiveFontSizes } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 const config = require("../../config.json");
+
 const Welcome = () => {
   const navigate = useNavigate();
   const [image, setImage] = useState("");

@@ -1,25 +1,17 @@
 import React, { useState } from "react";
 import "./Paypal.css";
 import { PayPalButton } from "react-paypal-button-v2";
-// import useScript from "./UseScript";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import Swal from "sweetalert2";
 const config = require("../../config.json");
+
 const Paypal = () => {
-  // useScript(
-  //   "https://www.paypal.com/sdk/js?client-id=AcnK9PqPq5N-netusmItGorX_LQ1aLczMGvqXXqnnUvkBxi26eq2c9Bnb0Q_uVEQB4B5Wc0ma77KbZdi&vault=true&intent=subscription"
-  // );
-
   const navigate = useNavigate();
-
-  // Modal States
   const [showpayment, setShowPayment] = useState(false);
   const [showpaypal, setShowPaypal] = useState(false);
-
-  // PaymentForm States
   const [fields, setFields] = useState({
     fullname: "",
     email: "",
@@ -27,12 +19,12 @@ const Paypal = () => {
     address: "",
   });
 
-  // PaymentForm Funtions
   const handleChange = (e) => {
     let key = e.target.name;
     let value = e.target.value;
     setFields({ ...fields, [key]: value });
   };
+
   const handlePaymentForm = async () => {
     const response = await axios.post(
       `${config.api_url}auth/updatepaymentdetails`,
@@ -48,13 +40,11 @@ const Paypal = () => {
     }
   };
 
-  // ModalFuntions
   const handleClosePayment = () => setShowPayment(false);
   const handleClosePaypal = () => setShowPaypal(false);
   const handleShowPaypal = () => setShowPaypal(true);
   const handleShowPayment = () => setShowPayment(true);
 
-  // PaypalApprove Funtion
   const handleApprove = async (data, details) => {
     const response = await axios.post(
       `${config.api_url}auth/addpaypalpayment`,
@@ -64,25 +54,17 @@ const Paypal = () => {
       Swal.fire("No User Found of this email");
     } else {
       Swal.fire("Payment Has Been Successfully Added");
-    }
-  };
-
-  React.useEffect(() => {
-    const getToken = localStorage.getItem("token");
-    if (getToken !== null) {
       navigate("/welcome");
     }
-  }, []);
-
+  };
   return (
     <>
-      {/* BUTTONS */}
       <div className="mainbutton-container">
         <div className="subbutton-container">
           <Button
             className="buttonone"
             variant="primary"
-            onClick={(e) => navigate("/login")}
+            onClick={(e) => navigate("/welcome")}
           >
             Use App Without Payment
           </Button>
@@ -103,7 +85,6 @@ const Paypal = () => {
         </div>
       </div>
 
-      {/* Enter Payment Details (Valid for 14 Days Only) */}
       <Modal
         show={showpayment}
         onHide={handleClosePayment}
@@ -153,7 +134,6 @@ const Paypal = () => {
         </Modal.Footer>
       </Modal>
 
-      {/* Pay Through Paypal */}
       <Modal
         show={showpaypal}
         onHide={handleClosePaypal}
@@ -164,32 +144,26 @@ const Paypal = () => {
           <Modal.Title>Pay Through Paypal</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div id="paypal-button-container-P-3VD25754AR0839324MLIE46Y">
-            <PayPalButton
-              createSubscription={(data, actions) => {
-                return actions.subscription.create({
-                  plan_id: "P-3VD25754AR0839324MLIE46Y",
-                });
-              }}
-              onApprove={(data, details) => {
-                handleApprove(data, details);
-              }}
-              onError={(error) => {
-                console.log(error);
-              }}
-              options={{
-                clientId:
-                  "https://www.paypal.com/sdk/js?client-id=AcnK9PqPq5N-netusmItGorX_LQ1aLczMGvqXXqnnUvkBxi26eq2c9Bnb0Q_uVEQB4B5Wc0ma77KbZdi&vault=true&intent=subscription",
-                vault: true,
-              }}
-              style={{
-                shape: "rect",
-                color: "blue",
-                layout: "horizontal",
-                label: "subscribe",
-              }}
-            />
-          </div>
+          <PayPalButton
+            createSubscription={(data, actions) => {
+              return actions.subscription.create({
+                plan_id: "P-3VD25754AR0839324MLIE46Y",
+              });
+            }}
+            onApprove={(data, details) => {
+              handleApprove(data, details);
+            }}
+            options={{
+              clientId:
+                "AcnK9PqPq5N-netusmItGorX_LQ1aLczMGvqXXqnnUvkBxi26eq2c9Bnb0Q_uVEQB4B5Wc0ma77KbZdi&vault=true&intent=subscription",
+            }}
+            style={{
+              shape: "rect",
+              color: "blue",
+              layout: "horizontal",
+              label: "subscribe",
+            }}
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClosePaypal}>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { BsPersonFill } from "react-icons/bs";
 import { MdOutlineTextsms } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
@@ -50,10 +49,6 @@ const Message = () => {
               className="icon"
               onClick={() => navigate("/edit-profile")}
             />
-            {/* <BsPersonFill
-              className="icon"
-              onClick={() => navigate("/edit-profile")}
-            /> */}
           </div>
         </div>
         <div className="main_mesagediv">

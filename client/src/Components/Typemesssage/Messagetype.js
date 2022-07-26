@@ -18,51 +18,54 @@ const Messagetype = () => {
   const { chatid, chatname, chatpic } = useParams();
   const scrollRef = useRef();
 
-  const from = jwt_decode(localStorage.getItem("token")).user_info[0]._id;
-  const fromName = jwt_decode(localStorage.getItem("token")).user_info[0].fullName;
+  const from = jwt_decode(localStorage.getItem("token"))?.user_info[0]?._id;
+  const fromName = jwt_decode(localStorage.getItem("token"))?.user_info[0]
+    ?.fullName;
   const to = chatid;
 
   const handleMessage = async (e) => {
     e.preventDefault();
-    if(message.length !== 0){
-
-      await axios
-      .post(`${config.api_url}chat/postchat`, {
+    if (message.length !== 0) {
+      await axios.post(`${config.api_url}chat/postchat`, {
         to: to,
         from: from,
         message: message,
         toUserInfo: {
-          toid : to,
-          chatpic:chatpic,
-          chatname:chatname
+          toid: to,
+          chatpic: chatpic,
+          chatname: chatname,
         },
         fromUserInfo: {
-          fromid : from,
-          frompic:fromImage,
-          fromname:fromName
-        }
-      })
-      .then((data) => setMessage(""))
-      .catch((error) => console.log(error));
+          fromid: from,
+          frompic: fromImage,
+          fromname: fromName,
+        },
+      });
       socket.current.emit("send-msg", {
         to: to,
         from: from,
         message: message,
       });
       const messagesArray =
-      chatArray === undefined ? [chatArray] : [...chatArray];
+        chatArray === undefined ? [chatArray] : [...chatArray];
       messagesArray.push({ message: message, from: from });
+      if (messagesArray[0] === undefined) {
+        messagesArray.shift();
+      }
       setchatArray(messagesArray);
-    };
-  }
+      setMessage("");
+    }
+  };
 
   useEffect(() => {
     const response = async () => {
-      const getFromImage =  await axios.get(`${config.api_url}chat/getFromImage/${from}`)
-       setfromImage(getFromImage?.data?.image); 
-    }
-    response()
-  },[])
+      const getFromImage = await axios.get(
+        `${config.api_url}chat/getFromImage/${from}`
+      );
+      setfromImage(getFromImage?.data?.image);
+    };
+    response();
+  }, []);
 
   useEffect(() => {
     const response = async () => {
@@ -78,7 +81,7 @@ const Messagetype = () => {
 
   useEffect(() => {
     if (from) {
-      socket.current = io("http://localhost:4000");
+      socket.current = io(config.api_url);
       socket.current.emit("add-user", from);
     }
   }, [from]);
@@ -92,11 +95,9 @@ const Messagetype = () => {
   }, []);
 
   useEffect(() => {
-    if (chatArray !== undefined) {
-      arrivalMessage && setchatArray((prev) => [...prev, arrivalMessage]);
-    } else {
-      arrivalMessage && setchatArray((prev) => [arrivalMessage]);
-    }
+    chatArray !== undefined &&
+      arrivalMessage &&
+      setchatArray((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage]);
 
   useEffect(() => {
@@ -121,7 +122,7 @@ const Messagetype = () => {
           <div className="before_messsage">
             <p>Start conversation with {chatname}</p>
           </div>
-          {chatArray !== undefined ? (
+          {chatArray !== undefined && (
             <>
               {chatArray?.map((item, index) => {
                 return (
@@ -134,13 +135,17 @@ const Messagetype = () => {
                         : "chat_message_recieve"
                     }
                   >
-                  <div className="chat_text_container">
-                    <p  className={
-                      item?.from === from
-                        ? "chat_text_send"
-                        : "chat_text_recieve"
-                    }>{item?.message}</p>
-                  </div>
+                    <div className="chat_text_container">
+                      <p
+                        className={
+                          item?.from === from
+                            ? "chat_text_send"
+                            : "chat_text_recieve"
+                        }
+                      >
+                        {item?.message}
+                      </p>
+                    </div>
                     <img
                       src={
                         item?.from === from
@@ -154,8 +159,6 @@ const Messagetype = () => {
                 );
               })}{" "}
             </>
-          ) : (
-            <p>Welcome to Chat app</p>
           )}
 
           <div className="typeinput_div">
@@ -172,7 +175,11 @@ const Messagetype = () => {
                 ></textarea>
               </div>
               <div className="send_icon_div">
-                <AiOutlineSend className="send_icon" onClick={handleMessage} style={{cursor: message.length === 0 && "no-drop"}}/>
+                <AiOutlineSend
+                  className="send_icon"
+                  onClick={handleMessage}
+                  style={{ cursor: message.length === 0 && "no-drop" }}
+                />
               </div>
             </div>
           </div>

@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const config = require('../../config.json')
-const Login = () => {
+const config = require("../../config.json");
 
+const Login = () => {
   const [loginState, setLoginState] = useState({
     email: "",
     password: "",
@@ -34,11 +34,11 @@ const Login = () => {
         password: data.password,
         email: data.email,
       });
-      
+
       if (result.data.status === true) {
         localStorage.setItem("token", result.data.token);
         Swal.fire("Login Successfully");
-        navigate("/welcome");
+        navigate("/paypal");
       } else if (result.data.message === "You Cannt Login.Pay First") {
         Swal.fire("Your free trial is over now.Pay to use the app");
         navigate("/paypal");
@@ -50,10 +50,10 @@ const Login = () => {
 
   React.useEffect(() => {
     const getToken = localStorage.getItem("token");
-    if(getToken !== null){
-      navigate('/welcome')
+    if (getToken !== null) {
+      navigate("/welcome");
     }
-  }, [])
+  }, []);
 
   return (
     <>

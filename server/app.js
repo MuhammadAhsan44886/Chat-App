@@ -1,6 +1,4 @@
-var createError = require("http-errors");
 var express = require("express");
-var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const mongoose = require("mongoose");
@@ -10,14 +8,16 @@ const imageRouter = require("./routes/image-upload-route");
 const chatRouter = require("./routes/chat-route");
 const socket = require("socket.io");
 
+require("dotenv").config(); // WHY
 const cors = require("cors");
 
 var app = express();
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "*",
   })
 );
+
 app.use("/upload", express.static("public/images"));
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -41,9 +41,7 @@ app.use("/api/chat", chatRouter);
 app.use("/api/upload", upload.single("profile_image"), imageRouter);
 
 mongoose
-  .connect(
-    "mongodb+srv://ahsan:xbox360ahsan@cluster0.dnxve.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_CONNECTION_URL)
   .then((response) => {
     console.log("Connected To Database");
   })
@@ -64,7 +62,7 @@ const server = app.listen(4000, () => {
 
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.SOCKET_ORIGIN_URL,
     transports: ["websocket", "polling", "flashsocket"],
     credentials: true,
     methods: ["GET", "POST"],

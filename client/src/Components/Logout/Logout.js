@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../Logout/logout.css";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { MdModeEditOutline } from "react-icons/md";
-import profile from "../images/signup.gif";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -38,19 +37,21 @@ const Logout = () => {
       <div className="logout_main">
         <div className="logout_head">
           <div className="back_icon">
-            <IoArrowBackOutline onClick={() => navigate('/chat-conversation')}/>
+            <IoArrowBackOutline
+              onClick={() => navigate("/chat-conversation")}
+            />
           </div>
           <div>
             <p className="logout_heading"> profile</p>
           </div>
           <div className="edit_icon">
-            <MdModeEditOutline  onClick={() => navigate('/edit-profile')}/>
+            <MdModeEditOutline onClick={() => navigate("/edit-profile")} />
           </div>
         </div>
         <div className="profile_data">
           <div className="profilediv_img">
             {" "}
-            <img src={`${config?.image_url}${userimage}`} alt=""  />
+            <img src={`${config?.image_url}${userimage}`} alt="" />
           </div>
         </div>
         <div className="profile_input">

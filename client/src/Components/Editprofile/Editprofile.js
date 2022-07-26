@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../Editprofile/editprofile.css";
 import { Button } from "@material-ui/core";
 import { IoArrowBackOutline } from "react-icons/io5";
@@ -45,7 +45,7 @@ const Editprofile = () => {
         localStorage.removeItem("token");
         localStorage.setItem("token", response.data.token);
         Swal.fire("User Update Successfully");
-        navigate('/chat-conversation')
+        navigate("/chat-conversation");
       }
     }
   };
@@ -73,7 +73,10 @@ const Editprofile = () => {
       <div className="edit_profile">
         <div className="edit_profile_head">
           <div className="edit_profile_arrow">
-            <IoArrowBackOutline className="EDIT_PROFILE_ICON" onClick={() => navigate('/chat-conversation')}/>
+            <IoArrowBackOutline
+              className="EDIT_PROFILE_ICON"
+              onClick={() => navigate("/chat-conversation")}
+            />
           </div>
           <div className="edit_profile_heading">
             <p>Edit profile</p>

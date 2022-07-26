@@ -1,21 +1,17 @@
-.logoutheading{
- position: absolute;
- right: 0;
- top: 10px;
- right: 42px;
- cursor: pointer;
-
+.logoutheading {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  right: 42px;
+  cursor: pointer;
 }
 
-.logoutheading p{
+.logoutheading p {
   font-size: 25px;
   font-weight: bold;
   text-transform: capitalize;
   color: white;
-  /* margin-top: 10px; */
 }
-
-
 
 .chatperson_main {
   width: 100%;
@@ -111,7 +107,7 @@
   font-size: 18px;
   font-weight: bold;
   margin-left: 20px;
-  text-transform: capitalize
+  text-transform: capitalize;
 }
 .person_img_main {
   width: 100%;
@@ -142,19 +138,18 @@
   }
 }
 @media only screen and (max-width: 600px) {
-  .conversation_arrow{
+  .conversation_arrow {
     top: 16px;
   }
-  .logoutheading{
+  .logoutheading {
     right: 0;
     top: 16px;
     right: 20px;
-   
-   }
-  
-   .logoutheading p{
-     font-size: 16px;
-   }
+  }
+
+  .logoutheading p {
+    font-size: 16px;
+  }
   .conversation_persondiv {
     max-width: 100%;
     width: 100%;
@@ -182,24 +177,22 @@
   }
 }
 @media only screen and (max-width: 440px) {
-  .conversation_arrow{
+  .conversation_arrow {
     top: 8px;
   }
-  .logoutheading{
+  .logoutheading {
     right: 0;
     top: 12px;
     right: 20px;
-   
-   }
-  
-   .logoutheading p{
-     font-size: 16px;
-   }
+  }
+
+  .logoutheading p {
+    font-size: 16px;
+  }
   .conversation_heading p {
     font-size: 20px;
   }
- 
-   
+
   .conversation_ICON {
     font-size: 22px;
     margin-top: 7px;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../Signup-page/signup.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import Swal from "sweetalert2";
 const config = require("../../config.json");
+
 const Signup = () => {
   const navigate = useNavigate();
   const [signState, setSignState] = useState({
@@ -11,6 +11,7 @@ const Signup = () => {
     password: "",
     fullName: "",
   });
+
   const handlechnage = (e) => {
     setSignState({
       ...signState,
@@ -25,8 +26,14 @@ const Signup = () => {
         password: signState.password,
         fullName: signState.fullName,
       };
+
+      const regex_pattern =
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
       if (item.email === "" || item.password === "" || item.fullName === "") {
         Swal.fire("Fill Every Field");
+      } else if (!regex_pattern.test(item.email)) {
+        Swal.fire("Invalid Email");
       } else {
         let result = await fetch(`${config.api_url}auth/register`, {
           method: "POST",

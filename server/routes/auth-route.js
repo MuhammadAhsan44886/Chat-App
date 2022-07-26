@@ -104,13 +104,11 @@ router.post("/updatepaymentdetails", async (req, res, next) => {
 
 router.post("/addpaypalpayment", async (req, res, next) => {
   try {
-    var username =
-      "AcnK9PqPq5N-netusmItGorX_LQ1aLczMGvqXXqnnUvkBxi26eq2c9Bnb0Q_uVEQB4B5Wc0ma77KbZdi";
-    var password =
-      "EJs2yLGX592N9oHJWAWfkYke0rLjjp5GkXDkw9agJwb3MvyQyk3mHYBPvUQTP5KFSgOWvcSHhAX83Asa";
+    var username = process.env.PAYPAL_USERNAME;
+    var password = process.env.PAYPAL_PASSWORD;
     const token = `${username}:${password}`;
     const encodedToken = Buffer.from(token).toString("base64");
-    const session_url = "https://api-m.sandbox.paypal.com/v1/oauth2/token";
+    const session_url = process.env.PAYPAL_SESSION_URL;
 
     var config = {
       method: "post",
@@ -124,7 +122,7 @@ router.post("/addpaypalpayment", async (req, res, next) => {
     const getAccess_Token = await axios(config);
     const accessToken = getAccess_Token.data.access_token;
     const subscription_details = await axios.get(
-      `https://api-m.sandbox.paypal.com/v1/billing/subscriptions/${req.body.data.subscriptionID}`,
+      `${process.env.SUBSCRIPTION_URL}/${req.body.data.subscriptionID}`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
