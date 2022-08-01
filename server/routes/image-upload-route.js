@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 router.patch("/image/:id", async (req, res) => {
   try {
+    console.log(req.file)
     const getUser = await User.findById({ _id: req.params.id });
     getUser.profile_image = req.file.filename;
     await getUser.save();
