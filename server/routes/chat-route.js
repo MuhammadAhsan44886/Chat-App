@@ -56,6 +56,7 @@ router.get("/getChat/:from/:to", async (req, res) => {
 });
 
 router.get("/getFromImage/:from", async (req, res) => {
+  console.log("GOOD")
   try {
     const { from } = req.params;
     const getUser = await User.findById({ _id: from });
@@ -64,7 +65,9 @@ router.get("/getFromImage/:from", async (req, res) => {
       status: true,
       image: getUser.profile_image,
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 });
 
 router.get("/previousconversations/:id", async (req, res) => {
