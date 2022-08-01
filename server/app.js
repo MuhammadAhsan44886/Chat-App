@@ -18,7 +18,7 @@ app.use(
   })
 );
 
-app.use("/upload", express.static("public/images"));
+app.use("/api/upload", express.static("public/images"));
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/images");
