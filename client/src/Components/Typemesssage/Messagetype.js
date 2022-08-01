@@ -81,7 +81,7 @@ const Messagetype = () => {
 
   useEffect(() => {
     if (from) {
-      socket.current = io(config.api_url);
+      socket.current = io(config.socket_url);
       socket.current.emit("add-user", from);
     }
   }, [from]);
@@ -95,9 +95,11 @@ const Messagetype = () => {
   }, []);
 
   useEffect(() => {
-    chatArray !== undefined &&
-      arrivalMessage &&
-      setchatArray((prev) => [...prev, arrivalMessage]);
+    if (chatArray !== undefined) {
+      arrivalMessage && setchatArray((prev) => [...prev, arrivalMessage]);
+    } else {
+      arrivalMessage && setchatArray((prev) => [arrivalMessage]);
+    }
   }, [arrivalMessage]);
 
   useEffect(() => {
