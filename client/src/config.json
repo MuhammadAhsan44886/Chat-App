@@ -1,11 +1,5 @@
 {
-<<<<<<< HEAD
-  "image_url": "http://52.90.161.188/upload/",
-  "api_url": "http://52.90.161.188/api/",
-  "socket_url": "http://52.90.161.188"
-=======
   "image_url": "http://52.90.161.188/api/upload/",  
   "api_url": "http://52.90.161.188/api/",
   "socket_url": "http://52.90.161.188/"
->>>>>>> 5c0f2e8274e17d5b00581e4b8ffcddb80aef9c87
 }
