@@ -14,7 +14,7 @@ const cors = require("cors");
 var app = express();
 app.use(
   cors({
-    origin: "*",
+    origin: "http://52.90.2.248",
   })
 );
 
