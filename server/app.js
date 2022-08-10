@@ -14,7 +14,7 @@ const cors = require("cors");
 var app = express();
 app.use(
   cors({
-    origin: "http://52.90.2.248",
+    origin: "*",
   })
 );
 
@@ -62,7 +62,7 @@ const server = app.listen(4000, () => {
 
 const io = socket(server, {
   cors: {
-    origin: process.env.SOCKET_ORIGIN_URL,
+    origin: "*",
     transports: ["websocket", "polling", "flashsocket"],
     credentials: true,
     methods: ["GET", "POST"],
