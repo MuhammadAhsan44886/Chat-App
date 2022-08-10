@@ -63,9 +63,7 @@ const server = app.listen(4000, () => {
 const io = socket(server, {
   cors: {
     origin: "*",
-    transports: ["websocket", "polling", "flashsocket"],
     credentials: true,
-    methods: ["GET", "POST"],
   },
 });
 
