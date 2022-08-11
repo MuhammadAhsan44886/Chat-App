@@ -59,7 +59,7 @@ const Welcome = () => {
     <>
       <div className="welocme_main">
         <div className="welcome_heading">
-          <p>welcome to chat app!</p>
+          <p>Welcome to Property Chef!</p>
         </div>
 
         <div className="picture_upload">

@@ -40,7 +40,7 @@ const Message = () => {
       <div className="message_main">
         <div className="message_head">
           <div>
-            <p className="messaeg_name"> chat app</p>
+            <p className="messaeg_name">Property Chef</p>
           </div>
           <div className="profile_icon">
           {/* {console.log(`${config.image_url}${userimage}`)} */}

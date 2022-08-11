@@ -63,166 +63,151 @@
   }
 } */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.main_home_wrapper{
-  padding : 13px 32px 30px 32px
+.main_home_wrapper {
+  padding: 13px 32px 30px 32px;
 }
 
-/* body{
-	background-size: cover;
-	text-align: center;
-	background-color: beige;
-	padding: 1rem 2rem 2rem 2rem;
-} */
-
-.target{
-  
-	color: lavender;
-	font-family: monospace;
-	font-size: 3rem;
+.target {
+  color: lavender;
+  font-family: monospace;
+  font-size: 3rem;
 }
 
-img{
-	width: 98%;
-	height:15rem;
-	margin-bottom: 2rem;
-	background-color: white;
+img {
+  width: 98%;
+  height: 15rem;
+  margin-bottom: 2rem;
+  background-color: white;
 }
 
-#sign-2{
-	width: 12rem;
-	margin-bottom: 2rem;
-	margin-right: 15rem;
-} 
-
-.pdf-section{
-	background-color: lavender;
-	margin-bottom: 3rem;
-
+#sign-2 {
+  width: 12rem;
+  margin-bottom: 2rem;
+  margin-right: 15rem;
 }
 
-
-.pdf-head{
-	color: orangered;
+.pdf-section {
+  background-color: lavender;
+  margin-bottom: 3rem;
 }
 
-.btn-Nav{
-	margin-right: 59rem;
-	margin-bottom: 4rem;
-	width: 10rem;
+.pdf-head {
+  color: orangered;
 }
 
-.btn-sign{
-	width: 12rem;
+.btn-Nav {
+  margin-right: 59rem;
+  margin-bottom: 4rem;
+  width: 10rem;
 }
 
-.header{
-	margin-bottom: 2rem;
-    color: blueviolet;
+.btn-sign {
+  width: 12rem;
 }
 
-.stakes h3{
-	font-size: 3rem;
-	font-family: sans-serif;
-}
-.stakes{
-	font-family: serif;
-	font-size: 1.4rem;
-	margin-bottom: 2rem;
+.header {
+  margin-bottom: 2rem;
+  color: blueviolet;
 }
 
-.bright h3{
-  
+.stakes h3 {
+  font-size: 3rem;
+  font-family: sans-serif;
+}
+.stakes {
+  font-family: serif;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.bright h3 {
   color: limegreen;
 }
 
-.bright{
-	background-color: dimgray;
-	font-size: 2rem;
-	margin-bottom: 2rem;
+.bright {
+  background-color: dimgray;
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
 .care {
-	margin-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.get-Set h3 {
+  font-size: 2rem;
+}
+
+.get-Set {
+  margin-bottom: 2.5rem;
+}
+
+.service-exp {
+  background-color: lavender;
+  padding: 0.5rem;
+  margin-bottom: 2.6rem;
+}
+.service-exp-par {
+  font-size: 1.7rem;
+  font-family: sans-serif;
+}
+
+#actNow {
+  color: yellowgreen;
+  font-size: 3rem;
+  font-style: important;
+}
+
+#benefits {
+  margin-top: 2rem;
+  background-color: dimgray;
+  color: limegreen;
+  margin-bottom: 3rem;
+  padding: 3rem;
+}
+
+.pricing h3 {
+  color: black;
+  font-size: 3rem;
+  margin-bottom: 1.4rem;
+}
+
+.pricing {
+  background-color: khaki;
+  color: dimgray;
+  font-size: 1.8rem;
+  padding: 4rem;
+  margin-bottom: 3rem;
+}
+
+.junk-drawer {
+  font-family: serif;
+  background-color: dimgray;
+  color: ghostwhite;
+  padding: 2rem 3rem 2rem 3rem;
+}
+
+.mobile_navbar{
+	display: none;
+}
+.desktop_nav{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+  .table_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 575px) {
+	.mobile_navbar{
+	display: flex;
+	margin-top: -20px;
+	justify-content: space-between;
 	}
-
-.get-Set h3{
-	 font-size: 2rem;
-
-}	
-
-.get-Set{
-	margin-bottom: 2.5rem;
-}
-
-.service-exp{
-	background-color: lavender;
-	padding: 0.5rem;
-	margin-bottom: 2.6rem;
-
-}
-.service-exp-par{
-	font-size: 1.7rem;
-	font-family: sans-serif;
-
-}
-
-#actNow{
-	color: yellowgreen;
-	font-size: 3rem;
-	font-style: important;
-
-}
-
-#benefits{
-	margin-top: 2rem;
-	background-color: dimgray;
-	color: limegreen;
-	margin-bottom: 3rem;
-	padding: 3rem;
-}
-
-.pricing h3{
-	color: black;
-	font-size: 3rem;
-	margin-bottom: 1.4rem;
-}
-
-.pricing{
-	background-color: khaki;
-	color: dimgray;
-	font-size: 1.8rem;
-	padding: 4rem;
-	margin-bottom: 3rem;
-
-}
-
-.junk-drawer{
-	font-family: serif;
-	background-color: dimgray;
-	color: ghostwhite;
-	padding: 2rem 3rem 2rem 3rem;
-}
+  }
+  
