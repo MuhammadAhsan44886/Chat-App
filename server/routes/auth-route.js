@@ -218,7 +218,7 @@ router.post("/submitemail", async (req, res) => {
       async function send() {
         const result = await transporter.sendMail({
           from: "propertycheff@gmail.com",
-          to: email,
+          to: email, 
           attachments: [
             {
               filename:
