@@ -7,6 +7,8 @@ const jwt = require("jsonwebtoken");
 const { response } = require("express");
 const axios = require("axios");
 const qs = require("qs");
+const PDFEmailModel = require("../Model/PdfEmail");
+const nodemailer = require("nodemailer");
 
 router.post("/login", async (req, res, next) => {
   try {
@@ -197,6 +199,48 @@ router.get("/getAllUsers/:id", async (req, res) => {
     const AllUsers = await User.find({ _id: { $ne: req.params.id } });
     res.status(200).send(AllUsers);
   } catch (error) {}
+});
+
+router.post("/submitemail", async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (email) {
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "propertycheff@gmail.com",
+          pass: "cqnvjxfvjxjlnqjd",
+        },
+      });
+
+      send();
+
+      async function send() {
+        const result = await transporter.sendMail({
+          from: "propertycheff@gmail.com",
+          to: email,
+          attachments: [
+            {
+              filename:
+                "HOW  TO  BECOME  AN  ONLINE   NETWORKING    MASTER (1).pdf",
+              path: "public/assets/HOW  TO  BECOME  AN  ONLINE   NETWORKING    MASTER (1).pdf",
+            },
+          ],
+        });
+     if(result){
+      const saveEmail = await PDFEmailModel.create({
+        email : email
+      })
+      await saveEmail.save();
+      res.status(200).send("Email Sent");
+     }else {
+      res.status(200).send("Email Not Sent");
+     }
+      }
+    }
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 module.exports = router;

@@ -1,12 +1,17 @@
-import React from "react";
+import React,{useState} from "react";
 import "../Chat-home/chatapp.css";
 import signup from "../images/signup.gif";
 import log from "../images/log.jpeg";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import EmailModal from "./EmailModal";
+
 
 const Chatapp = () => {
   const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   React.useEffect(() => {
     const getToken = localStorage.getItem("token");
@@ -112,7 +117,7 @@ const Chatapp = () => {
             </span>
           </h3>
 
-          <button className="btn btn-outline-primary btn-success">
+          <button className="btn btn-outline-primary btn-success" onClick={handleOpen}>
             DOWNLOAD <b>FREE</b> PDF
           </button>
         </div>
@@ -178,7 +183,7 @@ const Chatapp = () => {
               </div>
 
               <div className="card-footer">
-                <button className="btn btn-outline-primary btn-success">
+                <button className="btn btn-outline-primary btn-success" onClick={handleOpen}>
                   DOWNLOAD PDF
                 </button>
               </div>
@@ -286,26 +291,15 @@ const Chatapp = () => {
           </div>
         </div>
       </div>
-      {/* <div className="chatapp_main">
-      <div className="chatapp_heading">
-        <p>chat app</p>
-      </div>
-      <div className="chatapp_img">
-        <img src={signup} alt="" className="image_signup" />
-      </div>
-      <div className="chatapp_btn">
-        <Link to="/signup">
-          {" "}
-          <button className="btn_home">Signup</button>
-        </Link>
-      </div>
-      <div className="chatapp_btn">
-        <Link to="/login">
-          {" "}
-          <p className="chatapp_alrready">already have an account?</p>
-        </Link>
-      </div>
-    </div> */}
+    
+
+
+
+    {
+      open && <EmailModal open={open} handleClose={handleClose}/> 
+    }
+      
+
     </>
   );
 };
