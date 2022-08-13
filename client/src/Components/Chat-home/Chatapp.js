@@ -43,7 +43,7 @@ const Chatapp = () => {
                       className="btn btn-outline-primary rounded-circle btn-dark "
                       style={{ width: "100px" }}
                     >
-                      Logoo
+                      Logo
                     </button>
                   </a>
                 </li>
