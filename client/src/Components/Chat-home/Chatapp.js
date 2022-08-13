@@ -46,7 +46,7 @@ const Chatapp = () => {
                       Logo
                     </button> 
                   </a>
-                </li>
+                </li> 
 
                 <li>
                   <a href="#Price-Cards">
