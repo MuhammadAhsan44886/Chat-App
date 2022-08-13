@@ -44,7 +44,7 @@ const Chatapp = () => {
                       style={{ width: "100px" }}
                     >
                       Logo
-                    </button>
+                    </button> 
                   </a>
                 </li>
 
