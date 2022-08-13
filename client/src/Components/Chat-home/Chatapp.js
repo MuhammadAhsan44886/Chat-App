@@ -5,7 +5,7 @@ import log from "../images/log.jpeg";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import EmailModal from "./EmailModal";
-
+import logo from  '../images/logo.jpeg'
 
 const Chatapp = () => {
   const navigate = useNavigate();
@@ -39,12 +39,9 @@ const Chatapp = () => {
               <ul className="navbar-nav desktop_nav">
                 <li>
                   <a href="News.html">
-                    <button
-                      className="btn btn-outline-primary rounded-circle btn-dark "
-                      style={{ width: "100px" }}
-                    >
-                      Logo
-                    </button> 
+                  
+                      <img src={logo} alt="" style={{width: "120px", height: "50px", objectFit: "contain"}}/>
+                   
                   </a>
                 </li> 
 
@@ -67,12 +64,8 @@ const Chatapp = () => {
           <div className="mobile_navbar">
             <div>
               <a href="News.html">
-                <button
-                  className="btn btn-outline-primary rounded-circle btn-dark"
-                  style={{ width: "100px" }}
-                >
-                  Logo
-                </button>
+              <img src={logo} alt="" style={{width: "120px", height: "50px", objectFit: "contain"}}/>
+
               </a>
             </div>
 
