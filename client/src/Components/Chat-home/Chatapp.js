@@ -90,7 +90,7 @@ const Chatapp = () => {
           <h1>
             "WE HELP{" "}
             <b>
-              {/* <span className="target">REAL ESTATE PROFESSIONALS</span> */}
+              <span className="target">REAL ESTATE PROFESSIONALS</span>
             </b>{" "}
             AVOID <span className="target">WASTING TIME</span> ON NOISY SOCIAL
             NETWORK PLATFORMS BY USING A{" "}
