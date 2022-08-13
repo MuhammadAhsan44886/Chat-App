@@ -42,7 +42,7 @@ const Editprofile = () => {
         formdata
       );
       if (response.data.status === true) {
-        localStorage.removeItem("token");
+        localStorage.removeItem("token"); 
         localStorage.setItem("token", response.data.token);
         Swal.fire("User Update Successfully");
         navigate("/chat-conversation");
