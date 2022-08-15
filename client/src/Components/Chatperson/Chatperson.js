@@ -83,17 +83,21 @@ const Chatperson = () => {
               <>
                 <div
                   key={index}
-                  className="conversation_persondiv"
-                  onClick={(e) =>
-                    navigate(
+                  className="conversation_persondiv" 
+                  onClick={(e) => {
+                    item.profile_image ?    navigate(
                       `/type-message/${item._id}/${item.fullName}/${item.profile_image}`
-                    )
+                      ) :    navigate(
+                        `/type-message/${item._id}/${item.fullName}/no-image`
+                        )
                   }
-                >
+                 
+                    }
+                    >
                   <div className="person_img_div">
                     <img
                       src={`${config?.image_url}${item?.profile_image}`}
-                      alt=""
+                      alt="image"
                       className="person_img_main"
                     />
                   </div>

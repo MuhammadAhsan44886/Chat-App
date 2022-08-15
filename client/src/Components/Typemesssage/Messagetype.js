@@ -4,6 +4,7 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { AiOutlineSend } from "react-icons/ai";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import dummy from '../../Components/images/dummy.png'
 import jwt_decode from "jwt-decode";
 import { io } from "socket.io-client";
 const config = require("../../config.json");
@@ -17,6 +18,7 @@ const Messagetype = () => {
   const [fromImage, setfromImage] = useState("");
   const { chatid, chatname, chatpic } = useParams();
   const scrollRef = useRef();
+
 
   const from = jwt_decode(localStorage.getItem("token"))?.user_info[0]?._id;
   const fromName = jwt_decode(localStorage.getItem("token"))?.user_info[0]
@@ -148,13 +150,15 @@ const Messagetype = () => {
                         {item?.message}
                       </p>
                     </div>
+
+                 
                     <img
                       src={
                         item?.from === from
                           ? `${config?.image_url}${fromImage}`
                           : `${config?.image_url}${chatpic}`
                       }
-                      alt="error"
+                      alt="image"
                       className="chat_image"
                     />
                   </div>
