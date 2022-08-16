@@ -7,6 +7,10 @@ const registerSchema = mongoose.Schema(
       type: String,
       require: true,
     },
+    option: {
+      type: String,
+      require: true,
+    },
     password: {
       type: String,
       require: true,

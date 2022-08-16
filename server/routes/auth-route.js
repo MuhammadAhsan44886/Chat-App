@@ -170,6 +170,7 @@ router.post("/register", async (req, res) => {
           email: req.body.email,
           password: hash,
           fullName: req.body.fullName,
+          option: req.body.option
         });
         register
           .save()

@@ -159,7 +159,7 @@ const Paypal = () => {
             }}
             style={{
               shape: "rect",
-              color: "blue",
+              color: "gold",
               layout: "horizontal",
               label: "subscribe",
             }}

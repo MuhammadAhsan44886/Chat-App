@@ -11,12 +11,11 @@ const Logout = () => {
   const navigate = useNavigate();
   const [user, setuser] = useState("");
   const [userimage, setuserimage] = useState("");
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
-
+  
   React.useEffect(() => {
     const getToken = localStorage.getItem("token");
     if (getToken === null) {
@@ -26,12 +25,13 @@ const Logout = () => {
       setuser(userinfo);
       const id = userinfo._id;
       axios
-        .get(`${config.api_url}chat/getFromImage/${id}`)
-        .then((response) => setuserimage(response?.data?.image))
-        .catch((error) => console.log(error));
+      .get(`${config.api_url}chat/getFromImage/${id}`)
+      .then((response) => setuserimage(response?.data?.image))
+      .catch((error) => console.log(error));
     }
   }, []);
-
+  
+  console.log(user)
   return (
     <>
       <div className="logout_main">
@@ -64,6 +64,11 @@ const Logout = () => {
             Email:
           </label>
           <p>{user.email}</p>
+
+          <label for="lname" className="proilediv_label1">
+            Option:
+          </label>
+          <p>{user.option}</p>
         </div>
         <div className="logoutbutton_div">
           <button className="loout_btn" onClick={() => handleLogout()}>

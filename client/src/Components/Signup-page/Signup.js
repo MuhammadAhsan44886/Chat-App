@@ -12,6 +12,8 @@ const Signup = () => {
     fullName: "",
   });
 
+  const [option, setOption] = useState("");
+
   const handlechnage = (e) => {
     setSignState({
       ...signState,
@@ -25,12 +27,19 @@ const Signup = () => {
         email: signState.email,
         password: signState.password,
         fullName: signState.fullName,
+        option: option,
       };
+      console.log(item);
 
       const regex_pattern =
         /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-      if (item.email === "" || item.password === "" || item.fullName === "") {
+      if (
+        item.email === "" ||
+        item.password === "" ||
+        item.fullName === "" ||
+        item.option === ""
+      ) {
         Swal.fire("Fill Every Field");
       } else if (!regex_pattern.test(item.email)) {
         Swal.fire("Invalid Email");
@@ -108,6 +117,21 @@ const Signup = () => {
               placeholder="enter full name..."
               required
             />
+
+            <select
+              value={option}
+              className="sign_input"
+              onChange={(e) => setOption(e.target.value)}
+            >
+              <option value="none" selected>
+                Which option fits you:
+              </option>
+              <option value="Investor">Investor</option>
+              <option value="Agent">Agent</option>
+              <option value="Attorney">Attorney</option>
+              <option value="Lender">Lender</option>
+              <option value="Other">Other</option>
+            </select>
 
             <button className="signup_btn" onClick={handleClick}>
               SIGNUP
